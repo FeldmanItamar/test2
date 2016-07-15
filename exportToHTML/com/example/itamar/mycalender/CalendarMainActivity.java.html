@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>CalendarMainActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,0,255); }
+.s4 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+CalendarMainActivity.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">com.example.itamar.mycalender; 
+ 
+</span><span class="s0">import </span><span class="s1">android.app.DatePickerDialog; 
+</span><span class="s0">import </span><span class="s1">android.app.DatePickerDialog.OnDateSetListener; 
+</span><span class="s0">import </span><span class="s1">android.net.Uri; 
+</span><span class="s0">import </span><span class="s1">android.support.v7.app.AppCompatActivity; 
+</span><span class="s0">import </span><span class="s1">android.os.Bundle; 
+</span><span class="s0">import </span><span class="s1">android.view.View; 
+</span><span class="s0">import </span><span class="s1">android.widget.Button; 
+</span><span class="s0">import </span><span class="s1">android.widget.DatePicker; 
+</span><span class="s0">import </span><span class="s1">android.widget.TextView; 
+ 
+</span><span class="s0">import </span><span class="s1">com.google.android.gms.appindexing.Action; 
+</span><span class="s0">import </span><span class="s1">com.google.android.gms.appindexing.AppIndex; 
+</span><span class="s0">import </span><span class="s1">com.google.android.gms.common.api.GoogleApiClient; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.Calendar; 
+ 
+</span><span class="s0">public class </span><span class="s1">CalendarMainActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity </span><span class="s0">implements </span><span class="s1">OnDateSetListener { 
+ 
+    </span><span class="s0">private </span><span class="s1">Button btDate; 
+    </span><span class="s0">private </span><span class="s1">TextView tvDate; 
+    </span><span class="s0">private </span><span class="s1">DatePickerDialog datePicker; 
+    </span><span class="s0">private </span><span class="s1">Calendar calendar; 
+    </span><span class="s0">private int </span><span class="s1">day, month, year; 
+ 
+    @Override 
+    </span><span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) { 
+        </span><span class="s0">super</span><span class="s1">.onCreate(savedInstanceState); 
+        setContentView(R.layout.activity_calendar_main); 
+ 
+        btDate = (Button) findViewById(R.id.btDate); 
+        tvDate = (TextView) findViewById(R.id.tvDate); 
+ 
+        calendar = Calendar.getInstance(); 
+        year = calendar.get(Calendar.YEAR); 
+        month = calendar.get(Calendar.MONTH); 
+        day = calendar.get(Calendar.DAY_OF_MONTH); 
+ 
+        datePicker = </span><span class="s0">new </span><span class="s1">DatePickerDialog( 
+                </span><span class="s0">this</span><span class="s1">, 
+                myDateListener, </span><span class="s2">// listener for the date</span><span class="s1"> 
+                year, 
+                month, 
+                day); 
+ 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">onClick(View v) { 
+ 
+        </span><span class="s0">if </span><span class="s1">(v == btDate) { 
+            datePicker.show(); 
+            </span><span class="s2">//showDate(year, month, day);</span><span class="s1"> 
+        } 
+ 
+    } 
+ 
+    </span><span class="s0">private </span><span class="s1">OnDateSetListener myDateListener = </span><span class="s0">new </span><span class="s1">OnDateSetListener() { 
+ 
+        @Override 
+        </span><span class="s0">public void </span><span class="s1">onDateSet(DatePicker arg0, </span><span class="s0">int </span><span class="s1">arg1, </span><span class="s0">int </span><span class="s1">arg2, </span><span class="s0">int </span><span class="s1">arg3) { 
+ 
+            showDate(arg1, arg2 + </span><span class="s3">1</span><span class="s1">, arg3); 
+            datePicker.hide(); 
+        } 
+    }; 
+ 
+    @Override 
+    </span><span class="s0">public void </span><span class="s1">onDateSet(DatePicker arg0, </span><span class="s0">int </span><span class="s1">arg1, </span><span class="s0">int </span><span class="s1">arg2, </span><span class="s0">int </span><span class="s1">arg3) { 
+ 
+        showDate(arg1, arg2+</span><span class="s3">1</span><span class="s1">, arg3); 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">showDate(</span><span class="s0">int </span><span class="s1">year, </span><span class="s0">int </span><span class="s1">monthOfYear, </span><span class="s0">int </span><span class="s1">dayOfMonth) { 
+ 
+        tvDate.setText(</span><span class="s4">&quot;Date is: &quot; </span><span class="s1">+ dayOfMonth + </span><span class="s4">&quot; &quot; </span><span class="s1">+ monthOfYear + </span><span class="s4">&quot; &quot; </span><span class="s1">+ year); 
+ 
+    } 
+ 
+ 
+} 
+</span></pre>
+</body>
+</html>
